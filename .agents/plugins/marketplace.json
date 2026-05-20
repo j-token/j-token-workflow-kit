@@ -1,0 +1,20 @@
+{
+  "name": "j-token-workflows",
+  "interface": {
+    "displayName": "j-token 워크플로우"
+  },
+  "plugins": [
+    {
+      "name": "codex-workflow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-workflow"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
