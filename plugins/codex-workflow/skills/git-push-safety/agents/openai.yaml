@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Push Safety"
+  short_description: "Safe branch-explicit git push workflow"
+  default_prompt: "Use $git-push-safety before running or explaining any git push command."
