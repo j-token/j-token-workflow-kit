@@ -24,7 +24,7 @@
 | `requirements-to-spec` | 요구사항을 인터뷰하고 스펙/구현 문서로 수렴시킨다. |
 | `bug-report-to-fix` | 애매한 증상, 스크린샷, 로그를 버그 리포트로 정리한 뒤 수정한다. |
 | `figma-flow-to-implementation` | Figma 링크를 읽고 화면 전이 흐름을 Mermaid로 합의한 뒤 구현 문서를 만든다. |
-| `workflow-doc-state` | 각 플로우의 합의 상태를 루트의 `tmp/` 임시 문서에 남긴다. 사용자가 명시한 경우에만 레포 본문에 작성한다. |
+| `workflow-doc-state` | 각 플로우의 합의 상태를 OS 시스템 임시 디렉터리의 `codex-workflow/` 하위 문서에 남긴다. 사용자가 명시한 경우에만 레포 본문에 작성한다. |
 
 ## 공통 상태 모델
 
@@ -51,7 +51,8 @@ flowchart TD
 - 불확실한 부분은 `질문 필요`, `조사 필요`, `사용자 결정 필요`로 구분한다.
 - 구현은 문서가 확정된 뒤 시작한다.
 - 문서에는 채택한 결정뿐 아니라 버린 선택지도 짧게 남긴다.
-- 기본 문서 저장 위치는 레포 루트의 `tmp/` 폴더다.
+- 기본 문서 저장 위치는 OS 시스템 임시 디렉터리의 `codex-workflow/` 하위 폴더다.
+- 시스템 임시 디렉터리는 macOS/Linux의 `/tmp` 또는 `$TMPDIR`, Windows의 `%TEMP%`를 의미한다. 레포 내부 상대 경로 `tmp/`를 만들지 않는다.
 - 임시 문서는 기록으로 남길 수 있도록 날짜/시간 접두사를 붙인다.
 - 사용자가 명시적으로 지시한 경우에만 레포의 정식 문서 위치에 작성한다.
 - 최종 문서는 스펙과 구현 계획을 나누지 않고 하나의 파일로 작성한다.
@@ -111,7 +112,7 @@ flowchart TD
 
 | 문서 | 목적 |
 |---|---|
-| `tmp/YYYYMMDD-HHMM-feat-<topic>-workflow.md` | 대화 중 나온 요구사항, 질문, 조사 결과, 결정 사항, 구현 계획을 함께 축적한다. |
+| `<system-temp>/codex-workflow/YYYYMMDD-HHMM-feat-<topic>-workflow.md` | 대화 중 나온 요구사항, 질문, 조사 결과, 결정 사항, 구현 계획을 함께 축적한다. |
 | 최종 단일 문서 | 사용자가 명시적으로 요청한 경우에만 정식 위치에 작성한다. 스펙과 구현 계획을 한 파일에 둔다. |
 
 ### 플로우
@@ -123,7 +124,7 @@ flowchart TD
     C --> D["Codex: 코드/문서/외부 자료 조사"]
     D --> E["Codex: 구현 방향 제안"]
     E --> F["사용자: 맞음/아님/추가 질문 피드백"]
-    F --> G["Codex: tmp/YYYYMMDD-HHMM-feat-<topic>-workflow.md 갱신"]
+    F --> G["Codex: <system-temp>/codex-workflow/YYYYMMDD-HHMM-feat-<topic>-workflow.md 갱신"]
     G --> H{"스펙 작성 요청?"}
     H -- "아니오" --> C
     H -- "예" --> I["Codex: 단일 스펙/구현 문서 작성"]
@@ -208,7 +209,7 @@ flowchart TD
 
 | 문서 | 목적 |
 |---|---|
-| `tmp/YYYYMMDD-HHMM-bug-<topic>-workflow.md` | 버그 리포트, 사용자 정정, 원인 후보, 수정 계획, 검증 결과를 한 파일에 축적한다. |
+| `<system-temp>/codex-workflow/YYYYMMDD-HHMM-bug-<topic>-workflow.md` | 버그 리포트, 사용자 정정, 원인 후보, 수정 계획, 검증 결과를 한 파일에 축적한다. |
 | 최종 단일 문서 | 사용자가 명시적으로 요청한 경우에만 정식 위치에 작성한다. 버그 리포트와 수정/검증 내용을 한 파일에 둔다. |
 
 ### 플로우
@@ -227,7 +228,7 @@ flowchart TD
     I --> J["Codex: 원인 후보 좁히기"]
     J --> K["Codex: 수정"]
     K --> L["Codex: 고쳐진 게 맞는지 검증"]
-    L --> M["Codex: 결과를 tmp/YYYYMMDD-HHMM-bug-<topic>-workflow.md에 반영"]
+    L --> M["Codex: 결과를 <system-temp>/codex-workflow/YYYYMMDD-HHMM-bug-<topic>-workflow.md에 반영"]
 ```
 
 ### 플러그인 동작 규칙
@@ -302,7 +303,7 @@ flowchart TD
 
 | 문서 | 목적 |
 |---|---|
-| `tmp/YYYYMMDD-HHMM-feat-<topic>-ui-workflow.md` | Figma 화면 목록, 화면 역할, 추정 전이, 사용자 피드백, 구현 계획을 한 파일에 축적한다. |
+| `<system-temp>/codex-workflow/YYYYMMDD-HHMM-feat-<topic>-ui-workflow.md` | Figma 화면 목록, 화면 역할, 추정 전이, 사용자 피드백, 구현 계획을 한 파일에 축적한다. |
 | 최종 단일 문서 | 사용자가 명시적으로 요청한 경우에만 정식 위치에 작성한다. 화면 스펙과 구현 계획을 한 파일에 둔다. |
 
 ### 플로우
@@ -314,7 +315,7 @@ flowchart TD
     C --> D["Codex: 추정 화면 전이 작성"]
     D --> E["Codex: Mermaid 플로우 제시"]
     E --> F["사용자: 전이/요소/조건 피드백"]
-    F --> G["Codex: tmp/YYYYMMDD-HHMM-feat-<topic>-ui-workflow.md 갱신"]
+    F --> G["Codex: <system-temp>/codex-workflow/YYYYMMDD-HHMM-feat-<topic>-ui-workflow.md 갱신"]
     G --> H{"흐름 확정?"}
     H -- "아니오" --> E
     H -- "예" --> I["Codex: 단일 UI 스펙/구현 문서 작성"]
@@ -406,14 +407,16 @@ flowchart TD
 
 ### 2단계: 임시 문서 상태 저장
 
-반복 피드백을 안정적으로 반영하기 위해 레포 루트의 `tmp/` 폴더에 상태 문서를 저장한다. 사용자가 정식 문서 위치를 따로 지시한 경우에만 레포 본문에 작성한다.
+반복 피드백을 안정적으로 반영하기 위해 OS 시스템 임시 디렉터리의 `codex-workflow/` 하위 폴더에 상태 문서를 저장한다. 사용자가 정식 문서 위치를 따로 지시한 경우에만 레포 본문에 작성한다.
 
 ```text
-tmp/
+<system-temp>/codex-workflow/
   YYYYMMDD-HHMM-feat-<topic>-workflow.md
   YYYYMMDD-HHMM-bug-<topic>-workflow.md
   YYYYMMDD-HHMM-feat-<topic>-ui-workflow.md
 ```
+
+`<system-temp>`는 macOS/Linux의 `/tmp` 또는 `$TMPDIR`, Windows의 `%TEMP%` 같은 OS 임시 디렉터리다. 레포 내부의 상대 경로 `tmp/`가 아니다.
 
 파일명 접두사는 작업 시작 시점 기준으로 붙인다. `<topic>`에는 사용자가 말한 작업을 알아볼 수 있는 짧은 단어를 넣는다. 접두사는 branch-rule의 의미 접두사를 따른다: 기능/문서화는 `feat`, 버그는 `bug`, 성능은 `perf`, 리팩터링은 `refactor`, 자잘한 변경 묶음은 `misc`를 사용한다. 같은 분 단위에 같은 플로우 문서가 추가로 생기면 `-2`, `-3` 같은 접미사를 붙여 덮어쓰기를 피한다.
 
@@ -430,9 +433,11 @@ tmp/
 
 ## 확정된 결정
 
-- 임시 문서는 기본적으로 레포 루트의 `tmp/` 폴더에 작성한다.
+- 임시 문서는 기본적으로 OS 시스템 임시 디렉터리의 `codex-workflow/` 하위 폴더에 작성한다.
 - 임시 문서 파일명은 `YYYYMMDD-HHMM-<type>-<topic>-workflow.md` 형식을 사용한다.
-- `tmp/` 폴더가 없으면 생성해도 된다.
+- 시스템 임시 디렉터리는 macOS/Linux의 `/tmp` 또는 `$TMPDIR`, Windows의 `%TEMP%`를 의미한다.
+- 레포 내부 상대 경로 `tmp/`는 사용하지 않는다.
+- 시스템 임시 디렉터리 아래 `codex-workflow/` 폴더가 없으면 생성해도 된다.
 - 사용자가 명시적으로 지시한 경우에만 레포 본문에 정식 문서를 작성한다.
 - 최종 문서는 스펙과 구현 계획을 나누지 않고 하나의 파일로 작성한다.
 - 디버깅 플로우는 사용자가 수정/디버깅 시작을 명시하기 전까지 코드 수정에 들어가지 않는다.
