@@ -1,7 +1,7 @@
 {
-  "name": "j-token-workflows",
+  "name": "j-token-workflow-kit",
   "interface": {
-    "displayName": "j-token 워크플로우"
+    "displayName": "j-token Workflow Kit"
   },
   "plugins": [
     {
