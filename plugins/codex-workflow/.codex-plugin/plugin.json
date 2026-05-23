@@ -1,6 +1,6 @@
 {
   "name": "codex-workflow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "모호한 요구사항, 디버깅 요청, Figma/UI 작업을 확정된 단일 스펙/구현 문서로 수렴시키는 워크플로우 스킬 묶음입니다.",
   "author": {
     "name": "j-token",
