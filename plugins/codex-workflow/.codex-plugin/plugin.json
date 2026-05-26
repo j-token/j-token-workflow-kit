@@ -1,7 +1,7 @@
 {
   "name": "codex-workflow",
-  "version": "0.2.0",
-  "description": "모호한 요구사항, 디버깅 요청, Figma/UI 작업을 확정된 단일 스펙/구현 문서로 수렴시키는 워크플로우 스킬 묶음입니다.",
+  "version": "0.3.0",
+  "description": "모호한 요구사항, 디버깅 요청, Figma/UI 작업, PRD와 기술 스펙 작성을 확정된 문서로 수렴시키는 워크플로우 스킬 묶음입니다.",
   "author": {
     "name": "j-token",
     "email": "j-token@example.com",
@@ -13,6 +13,8 @@
   "keywords": [
     "workflow",
     "spec",
+    "prd",
+    "technical-spec",
     "debugging",
     "figma",
     "codex"
@@ -21,7 +23,7 @@
   "interface": {
     "displayName": "Codex 워크플로우",
     "shortDescription": "요구사항, 디버깅, UI 요청을 구현 가능한 문서로 수렴합니다.",
-    "longDescription": "Codex 워크플로우는 거친 요구사항 발견, 버그 리포트 기반 디버깅, Figma/스크린샷 기반 UI 구현을 위한 로컬 스킬 묶음입니다. git, PR, 커밋, 글쓰기 안전 규칙도 함께 포함합니다.",
+    "longDescription": "Codex 워크플로우는 거친 요구사항 발견, 버그 리포트 기반 디버깅, Figma/스크린샷 기반 UI 구현, PRD와 기술 스펙 작성을 위한 로컬 스킬 묶음입니다. git, PR, 커밋, 글쓰기 안전 규칙도 함께 포함합니다.",
     "developerName": "j-token",
     "category": "Productivity",
     "capabilities": [
@@ -31,6 +33,8 @@
     ],
     "defaultPrompt": [
       "이 요구사항을 스펙/구현 문서로 정리해줘.",
+      "이 아이디어를 PRD로 작성해줘.",
+      "이 설계를 기술 스펙 문서로 정리해줘.",
       "먼저 버그 리포트를 만들고 승인 후 수정해줘.",
       "이 UI 자료를 읽고 화면 흐름을 정리해줘."
     ],

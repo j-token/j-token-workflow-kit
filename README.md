@@ -4,6 +4,8 @@
 
 TL;DR: `j-token-workflow-kit` is a Codex workflow plugin that turns rough requests into reviewable specs, code changes, and verification steps. It is designed for work that starts vague and needs to become concrete before implementation.
 
+Current plugin version: `0.3.0`
+
 ## Why This Exists
 
 Codex can implement quickly, but unclear requests can still produce unclear changes. This kit adds a lightweight workflow around the conversation:
@@ -54,6 +56,8 @@ After implementation, Codex should verify the result and report what was checked
 | Skill | Purpose |
 |---|---|
 | `requirements-to-spec` | Turns rough requirements into a concrete spec and implementation document. |
+| `prd-writer` | Drafts technical PRDs for products, SDKs, CLIs, runtimes, and developer tools. |
+| `technical-spec-writer` | Turns technical design notes into implementation specs with APIs, protocols, boundaries, and tests. |
 | `bug-report-to-fix` | Captures bug details first, then moves into debugging and fixing after approval. |
 | `figma-flow-to-implementation` | Converts Figma links, screenshots, or UI references into a screen flow and implementation spec. |
 | `workflow-composer` | Combines multiple workflows when a request mixes requirements, bugs, and UI work. |
@@ -71,6 +75,14 @@ Use the workflow to clarify this requirement before implementation.
 
 ```text
 Document the agreed requirement as a spec.
+```
+
+```text
+Draft this product idea as a PRD.
+```
+
+```text
+Turn this runtime design into a technical implementation spec.
 ```
 
 ```text
